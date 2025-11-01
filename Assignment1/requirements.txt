@@ -1,0 +1,23 @@
+# Assignment 01 - Ollama Chatbot Requirements
+# Course: LLMs and Multi-Agent Orchestration
+# Reichman University
+
+# Core Chatbot Frameworks
+streamlit>=1.28.0          # For Streamlit version
+flask>=3.0.0               # For Flask version
+
+# Ollama Integration
+ollama>=0.1.6              # Ollama Python library
+
+# Utilities
+python-dotenv>=1.0.0       # Environment variables management
+requests>=2.31.0           # HTTP requests
+
+# Optional: Cloud API Integration
+openai>=1.0.0              # OpenAI API (optional)
+anthropic>=0.3.0           # Anthropic Claude API (optional)
+
+# Optional: Advanced Features
+gradio>=4.0.0              # Alternative UI framework (optional)
+
+
