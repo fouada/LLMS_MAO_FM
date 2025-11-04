@@ -53,6 +53,23 @@ We built a simple chatbot (like ChatGPT) that runs locally using **Ollama** and 
 ## 2) AI prompts we actually used (paste yours here)
 
 Replace the examples with your real prompts from ChatGPT/Claude/Cursor. Dates help show your process.
+This section is the single source of truth for prompts used to build the project. You may link to any additional notes if you kept them elsewhere.
+
+### Prompt entry template (copy and fill)
+**Date**: `[YYYY-MM-DD]`  
+**Tool**: `[ChatGPT/Claude/Cursor]`
+
+```
+[PASTE YOUR EXACT PROMPT]
+```
+
+What we got back:
+- `[...]`
+
+What we changed:
+- `[...]`
+
+---
 
 ### Prompt #1 — Getting started
 **Date**: [Your Date]  

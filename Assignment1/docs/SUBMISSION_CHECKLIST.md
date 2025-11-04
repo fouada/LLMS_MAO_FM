@@ -6,7 +6,7 @@
   - Explains what you built and why
 - [ ] **Prompts log included**
   - Paste the real prompts used to build the project
-  - Files: `Udocs/ASSIGNMENT1_SUBMISSION.md` → “AI prompts we actually used” and/or `docs/PROMPTS.md`
+  - Location: `Udocs/ASSIGNMENT1_SUBMISSION.md` → “AI prompts we actually used” (single source of truth). You may link to extra notes if needed, but do not duplicate.
 - [ ] **README contains install/run instructions**
   - Uses `requirements.txt` (no committed venv)
   - Shows how to install UV and run with venv

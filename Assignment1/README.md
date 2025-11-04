@@ -8,7 +8,6 @@ This repo contains a simple local chatbot that connects to Ollama on localhost a
 - `requirements.txt` — dependencies only (no venv committed)
 - `launch_streamlit.sh`, `launch_flask.sh` — one‑liners to run
 - `Udocs/ASSIGNMENT1_SUBMISSION.md` — PRD + submission doc (paste your real prompts there)
-- `docs/PROMPTS.md` — a focused prompts log template (optional but recommended)
 - `docs/images/` — add screenshots here (UI running, tests, etc.)
 
 ### Prerequisites
@@ -63,11 +62,9 @@ Place images under `docs/images/` and reference them here, for example:
 ![Chat Example](docs/images/chat-example.png)
 
 ### Prompts & PRD
-- Paste your actual prompts and short outcomes into:
-  - `Udocs/ASSIGNMENT1_SUBMISSION.md` (section: “AI prompts we actually used”) and/or
-  - `docs/PROMPTS.md` (focused prompts log)
+- Paste your actual prompts and short outcomes into `Udocs/ASSIGNMENT1_SUBMISSION.md` (section: “AI prompts we actually used”). This is the single source of truth; you may link to any additional notes if you kept them separately.
 
-The lecturer wants to see how you phrased the prompts that built the project. Export to PDF if needed.
+The lecturer wants to see how you phrased the prompts that built the project. Export to PDF if needed from the submission doc.
 
 ### Repository expectations (from class)
 - Repo must be PUBLIC
