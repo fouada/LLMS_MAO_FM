@@ -1,4 +1,4 @@
-# Assignment 1: Ollama Chatbot - Submission Document
+# Assignment 1: Ollama Chatbot — Submission (Plain English Version)
 
 **Course**: LLMs and Multi-Agent Orchestration  
 **Institution**: Reichman University  
@@ -8,384 +8,226 @@
 
 ## Team Information
 
-**Team Code Name**: `[YourUniqueCode]` *(e.g., FouadTeam2025, no spaces)*
+**Team Code (no spaces)**: `[YourUniqueCode]` *(e.g., FouadTeam2025)*
 
-**Team Member A**:
+**Member A**
 - ID: `[ID Number]`
-- Name: `[Your Full Name]` *(optional)*
+- Name (optional): `[Full Name]`
 
-**Team Member B**:
+**Member B**
 - ID: `[ID Number]`
-- Name: `[Partner Full Name]` *(optional)*
+- Name (optional): `[Full Name]`
 
-**GitHub Repository**: `[https://github.com/username/repo]` ✅ PUBLIC
-
-**Date Submitted**: November 4, 2025
+**GitHub Repository**: `[https://github.com/username/repo]` ✅ PUBLIC  
+**Submission Date**: November 4, 2025
 
 ---
 
-## 1. Product Requirements Document (PRD)
+## 1) PRD — What we’re building and why
 
-### Project Goal
-Create a chatbot interface similar to ChatGPT/Gemini/Claude, but using **Ollama** (local LLM) instead of cloud APIs.
+### In one sentence
+We built a simple chatbot (like ChatGPT) that runs locally using **Ollama** and has a clean web UI.
 
-### Requirements
-- ✅ Connect to Ollama API (localhost:11434)
-- ✅ Build a GUI interface (web-based or desktop)
-- ✅ Send user messages to Ollama
-- ✅ Display AI responses
-- ✅ Maintain conversation history
-- ✅ Allow model selection
-- ✅ Handle errors gracefully
+### What we must support
+- Connect to the local Ollama API on `localhost:11434`
+- A usable GUI (we chose a browser UI with Streamlit)
+- Send user messages and show model responses
+- Keep conversation history within the session
+- Let the user pick a model
+- Handle errors nicely (e.g., if Ollama isn’t running)
 
-### Technology Choices
-- **LLM**: Ollama (local, no API key needed)
-- **Model**: llama3.2 (or any small model)
-- **Frontend**: Streamlit (web interface)
+### Tech stack (short and practical)
+- **LLM**: Ollama (local; no API key needed)
+- **Model**: `llama3.2` (small and runs everywhere)
+- **UI**: Streamlit (fast to build and learn)
 - **Language**: Python
-- **API Client**: Ollama Python SDK
+- **Client**: Ollama Python SDK
 
-### Why These Choices?
-- **Ollama**: Free, runs locally, no API costs
-- **Streamlit**: Fast to build, good for prototyping
-- **Python**: Industry standard for AI/ML
+### Why this setup
+- We wanted zero cloud costs and fast local iterations → Ollama
+- We wanted to build a working UI in hours, not days → Streamlit
+- We’re comfortable with Python and the SDK is simple
 
 ---
 
-## 2. AI Prompts Used to Create This Project
+## 2) AI prompts we actually used (paste yours here)
 
-### Prompt #1: [Initial Setup]
+Replace the examples with your real prompts from ChatGPT/Claude/Cursor. Dates help show your process.
+
+### Prompt #1 — Getting started
 **Date**: [Your Date]  
-**AI Tool**: [ChatGPT/Claude/Cursor]
+**Tool**: [ChatGPT/Claude/Cursor]
 
 ```
-[PASTE YOUR ACTUAL PROMPT HERE]
-
-Example:
-"I need to create a chatbot for my assignment that connects to Ollama 
-running locally. It should have a web interface where users can type 
-messages and see responses. Can you help me set this up with Python?"
+[PASTE YOUR ACTUAL PROMPT]
 ```
 
-**What I Received**:
-- [Describe what code/suggestions the AI gave you]
+What we got back:
+- [Summarize the answer you received]
 
-**What I Learned**:
-- [What technical concept you understood from this]
+What we learned:
+- [Write what you understood/changed]
 
 ---
 
-### Prompt #2: [Feature/Problem]
+### Prompt #2 — Conversation memory
 **Date**: [Your Date]
 
 ```
-[YOUR SECOND PROMPT]
-
-Example:
-"The chatbot forgets previous messages. How do I maintain conversation 
-history when calling Ollama API?"
+[PASTE YOUR ACTUAL PROMPT]
 ```
 
-**What I Received**:
-- [AI's response]
+What we got back:
+- [Short summary]
 
-**What I Learned**:
-- [Your learning]
+What we changed in the code:
+- [e.g., Send the full messages array each call]
 
 ---
 
-### Prompt #3: [Another Feature/Issue]
+### Prompt #3 — [Your next issue]
 **Date**: [Your Date]
 
 ```
-[YOUR THIRD PROMPT]
+[PASTE YOUR ACTUAL PROMPT]
 ```
 
-**What I Received**:  
-**What I Learned**:
+Result & learning:
+- [Short and honest]
 
 ---
 
-### [Add more prompts as needed - include 3-7 significant prompts]
+### Add more prompts as needed (total 3–7)
 
 ---
 
-## 3. What We Created
+## 3) What we built
 
-### Project Structure
+### Project layout
 ```
 Assignment1/
-├── chatbot_streamlit.py      # Main application
-├── requirements.txt          # Python dependencies
-├── launch_streamlit.sh       # Launch script
-├── .gitignore               # Git ignore file
-└── Udocs/                    # This documentation
+├── chatbot_streamlit.py      # Main app
+├── requirements.txt          # Dependencies
+├── launch_streamlit.sh       # One-liner launcher
+├── .gitignore                # Keeps venv/secrets out of git
+└── Udocs/                    # Documentation
 ```
 
-### Architecture Diagram
+### How the pieces talk
 ```
-User types message
-    ↓
-Streamlit Interface (Frontend)
-    ↓
-Ollama Python SDK
-    ↓
-Ollama API (localhost:11434)
-    ↓
-LLM Model (llama3.2)
-    ↓
-Response back to user
+User → Streamlit UI → Ollama Python SDK → Ollama API (localhost:11434)
+    → LLM (llama3.2) → Response back to UI
 ```
 
-### Key Components
-
-#### 1. Ollama Connection Code
-```python
-import ollama
-
-# Connect to Ollama and send message
-response = ollama.chat(
-    model='llama3.2',
-    messages=[
-        {"role": "user", "content": "Hello!"}
-    ]
-)
-
-# Get response
-assistant_reply = response['message']['content']
-```
-
-#### 2. Conversation History Management
-```python
-# Store messages in Streamlit session state
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-# Add user message
-st.session_state.messages.append({
-    "role": "user", 
-    "content": user_input
-})
-
-# Send entire history to Ollama
-response = ollama.chat(
-    model=selected_model,
-    messages=st.session_state.messages  # Full history
-)
-```
-
-#### 3. User Interface
-```python
-import streamlit as st
-
-# Display chat history
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
-
-# User input
-if prompt := st.chat_input("Type your message..."):
-    # Process and respond
-```
+### Core code ideas
+- Call `ollama.chat(model, messages=[...])`
+- Keep messages in `st.session_state` so the chat “remembers”
+- Model selection in the sidebar
+- Clear chat resets the session messages
 
 ---
 
-## 4. How We Got to the GUI
+## 4) How we built the UI (short story)
 
-### Design Process
-
-**Step 1: Technology Selection**
-- Considered: HTML/JavaScript, Flask, Streamlit, Desktop app
-- **Chose Streamlit** because:
-  - Fast to build
-  - Built-in chat components
-  - No HTML/CSS needed
-  - Auto-refresh on code changes
-
-**Step 2: Interface Layout**
-```
-┌─────────────────────────────────────────┐
-│  Ollama Chatbot          [Sidebar →]   │
-├─────────────────────────────────────────┤
-│                                         │
-│  👤 User: Hello!                        │
-│  🤖 Bot: Hi! How can I help?            │
-│                                         │
-│  👤 User: What is Python?               │
-│  🤖 Bot: Python is a programming...     │
-│                                         │
-├─────────────────────────────────────────┤
-│  💬 Type your message... [Send]         │
-└─────────────────────────────────────────┘
-
-Sidebar:
-┌─────────────┐
-│ Model:      │
-│ ▼ llama3.2  │
-│   mistral   │
-│             │
-│ [Clear]     │
-└─────────────┘
-```
-
-**Step 3: Implementation**
-1. Created basic Streamlit app skeleton
-2. Added Ollama connection
-3. Implemented message display
-4. Added conversation history
-5. Added model selection
-6. Added error handling
-
-**Step 4: Testing**
-- Tested with various prompts
-- Verified conversation memory works
-- Tested model switching
-- Tested error cases (Ollama not running)
+1) We compared HTML/Flask/Streamlit/desktop. We picked **Streamlit** to move fast.  
+2) We scaffolded a basic page, added a chat input and message list.  
+3) We wired up Ollama calls.  
+4) We stored the full message history in `st.session_state` so context is preserved.  
+5) We added a sidebar for model selection and a “Clear chat” button.  
+6) We tested common errors (like Ollama not running) and added helpful messages.
 
 ---
 
-## 5. How to Launch the Application
+## 5) How to run it (UV-first, as recommended)
 
 ### Prerequisites
 ```bash
-# 1. Install Ollama (one-time setup)
+# 1) Install Ollama
 brew install ollama
 
-# 2. Pull a model (one-time setup)
+# 2) Pull a small model
 ollama pull llama3.2
 
-# 3. Install UV for package management (recommended by lecturer)
+# 3) Install UV (faster package manager)
 brew install uv
 
-# 4. Clone repository
+# 4) Clone the repo
 git clone [your-repo-url]
 cd Assignment1
 ```
 
-### Launch Steps
+### Start everything
 
-**Terminal 1: Start Ollama**
+Terminal 1 — start Ollama:
 ```bash
 ollama serve
 ```
 
-**Terminal 2: Run Application**
+Terminal 2 — set up and run the app:
 ```bash
 cd Assignment1
 
-# Create virtual environment (first time only)
+# First-time only: create a virtual environment
 python3 -m venv .venv
 
-# Activate
+# Activate it
 source .venv/bin/activate
 
-# Install dependencies (first time only)
+# Install packages (fast via UV)
 uv pip install -r requirements.txt
 
-# Launch app
+# Run the app
 streamlit run chatbot_streamlit.py
 ```
 
-**Access the Application**
-- Open browser: http://localhost:8501
-
-### Quick Launch (Using Script)
+Open your browser at: http://localhost:8501  
+Quick start next time:
 ```bash
 bash launch_streamlit.sh
 ```
 
 ---
 
-## 6. How to Use the GUI
+## 6) How to use the UI
 
-### Using the Chatbot
+- Pick a model in the sidebar (e.g., `llama3.2`)
+- Type your message at the bottom input
+- Press Enter; the reply appears
+- Ask follow‑ups — the chat keeps context
+- Use “Clear chat” to start fresh
 
-**Step 1: Select Model**
-- Look at the sidebar on the left
-- Click the dropdown menu
-- Choose a model (e.g., llama3.2)
-
-**Step 2: Type a Message**
-- Find the text input box at the bottom
-- Type your question or prompt
-- Press Enter or click Send
-
-**Step 3: View Response**
-- The bot's response appears in the chat area
-- Your message shows with 👤 icon
-- Bot's response shows with 🤖 icon
-
-**Step 4: Continue Conversation**
-- Type follow-up questions
-- The bot remembers previous messages
-- Conversation history is maintained
-
-**Step 5: Clear Chat (Optional)**
-- Click "Clear Chat" button in sidebar
-- Starts fresh conversation
-
-### Example Conversation
+Example:
 ```
 You: Hello!
 Bot: Hi! How can I help you today?
-
-You: What's 2+2?
-Bot: 2+2 equals 4.
-
-You: And what's 3+3?
-Bot: 3+3 equals 6.
+You: What’s 2+2?
+Bot: 2+2 = 4
+You: And 3+3?
+Bot: 3+3 = 6
 ```
-
-### Features
-- ✅ Real-time responses
-- ✅ Conversation memory
-- ✅ Multiple model support
-- ✅ Clear error messages
-- ✅ Simple, clean interface
 
 ---
 
-## 7. Technical Implementation Details
+## 7) Technical details (in plain English)
 
-### 7.1 How Ollama API Works
+### Ollama in one paragraph
+Ollama runs locally as a small HTTP server on `localhost:11434`. You don’t need an API key because nothing leaves your machine. Your app sends a list of messages with roles (`user` / `assistant`), and Ollama returns the next assistant message. LLMs don’t remember anything between requests, so you must send the full conversation each time.
 
-**Connection**:
-- Ollama runs as a local service on port 11434
-- No API key needed (local service)
-- Access via `http://localhost:11434`
-
-**API Call Structure**:
+### Minimal call
 ```python
 import ollama
 
 response = ollama.chat(
-    model='llama3.2',           # Which model to use
-    messages=[                   # Conversation history
-        {"role": "user", "content": "Hello"},
-        {"role": "assistant", "content": "Hi!"},
-        {"role": "user", "content": "How are you?"}
+    model="llama3.2",
+    messages=[
+        {"role": "user", "content": "Hello"}
     ]
 )
 
-# Response structure
-{
-    "message": {
-        "role": "assistant",
-        "content": "I'm doing well, thank you!"
-    },
-    "model": "llama3.2",
-    "created_at": "...",
-    "done": true
-}
+assistant_text = response["message"]["content"]
 ```
 
-**Why Send Full History?**
-- LLMs are stateless (no memory)
-- Must send complete conversation each time
-- This is how the bot "remembers" context
-
-### 7.2 Error Handling
-
+### Error handling
 ```python
 try:
     response = ollama.chat(model=model, messages=messages)
@@ -394,155 +236,100 @@ except Exception as e:
     st.info("Make sure Ollama is running: ollama serve")
 ```
 
-### 7.3 Session Management
-
+### Session state (why it matters)
 ```python
-# Streamlit session state persists across reruns
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Add messages
-st.session_state.messages.append(new_message)
-
-# Access anywhere in the app
-all_messages = st.session_state.messages
+st.session_state.messages.append({"role": "user", "content": user_input})
 ```
 
 ---
 
-## 8. What We Learned
+## 8) What we learned
 
-### Technical Skills
-1. **API Integration**: Learned how to connect to Ollama API using Python SDK
-2. **LLM Concepts**: Understood that LLMs are stateless and need full context
-3. **Message Format**: Learned the role/content structure for conversations
-4. **Web Development**: Built a web interface with Streamlit
-5. **Error Handling**: Implemented proper error checking and user feedback
-
-### Key Insights
-- **Local LLMs**: Ollama allows running models locally without API costs
-- **Conversation History**: Must send entire message history for context
-- **Model Selection**: Different models have different capabilities and speeds
-- **User Experience**: Simple interfaces can be powerful
-
-### Challenges Solved
-1. **Challenge**: Chatbot forgot previous messages
-   - **Solution**: Send full message history in each API call
-   
-2. **Challenge**: Application crashed when Ollama wasn't running
-   - **Solution**: Added try-catch error handling with helpful messages
-
-3. **Challenge**: UI needed to update after each message
-   - **Solution**: Used Streamlit's session state and rerun()
+- How to call Ollama’s API from Python, end‑to‑end
+- Why LLMs need the full message history on every call
+- How to design a simple, usable chat UI quickly
+- How to handle common errors and keep the app stable
 
 ---
 
-## 9. Repository Information
+## 9) Repository info
 
-**Repository URL**: [Your GitHub/GitLab URL]
+**Repo URL**: [Your GitHub/GitLab URL]  
+**Public**: ✅ Yes
 
-**Repository is PUBLIC**: ✅ Yes
-
-**Files Included**:
-- ✅ Source code (chatbot_streamlit.py)
-- ✅ Dependencies (requirements.txt)
-- ✅ Launch script (launch_streamlit.sh)
-- ✅ Documentation (this file)
-- ✅ .gitignore (excludes .venv, __pycache__, etc.)
-
----
-
-## 10. Verification Checklist
-
-- [x] Application launches without errors
-- [x] Connects to Ollama API successfully
-- [x] Sends user messages to LLM
-- [x] Displays responses correctly
-- [x] Maintains conversation history
-- [x] Allows model selection
-- [x] Handles errors gracefully
-- [x] GUI is functional and user-friendly
-- [x] Documentation is complete
-- [x] Repository is public and accessible
+Includes:
+- `chatbot_streamlit.py` (app)
+- `requirements.txt` (deps only — no venv committed)
+- `launch_streamlit.sh` (launcher)
+- `Udocs/ASSIGNMENT1_SUBMISSION.md` (this doc)
+- `.gitignore` (excludes `.venv`, `__pycache__`, `.env`, etc.)
 
 ---
 
-## 11. Self-Assessment and Grade Recommendation
+## 10) Quick checklist
 
-### Our Recommended Grade: `[60-100]`
-
-**Important Note from Lecturer**:
-- **Grade 100**: Very strict checking - grader will look for every small detail
-- **Grade 60**: Flexible, supportive checking if submission is reasonable
-
-### Our Self-Assessment:
-
-We recommend a grade of **[XX]** for the following reasons:
-
-**Strengths**:
-- [List what you did well]
-- [Example: Successfully connected to Ollama API]
-- [Example: Complete documentation with real prompts]
-- [Example: Working GUI with all required features]
-
-**Areas for Improvement**:
-- [Be honest about what could be better]
-- [Example: UI could be more polished]
-- [Example: Error handling could be more robust]
-
-**Why This Grade**:
-```
-[Explain your reasoning]
-
-Example:
-We believe we deserve [XX] because we met all technical requirements 
-(Ollama connection, GUI, documentation, prompts). The application works 
-reliably and we documented our actual development process with real 
-prompts and problems we faced. Some areas like UI design could be more 
-polished, but the core functionality is solid.
-```
+- [x] App launches without errors
+- [x] Connects to Ollama on localhost
+- [x] Sends/receives chat messages
+- [x] Keeps chat history in session
+- [x] Lets you pick a model
+- [x] Handles common errors
+- [x] Repo is public and clean
+- [x] This document includes our prompts and process
 
 ---
 
-## 12. Special Notes
+## 11) Self‑assessment (grade recommendation)
 
-**Late Submission**: ☐ Yes ☐ No
+**Recommended grade**: `[60–100]`
 
-**Reason (if late)**: `[Your reason here]`
+Notes from the lecturer:
+- 100 → extremely strict review (“find the elephants in the reeds”)
+- 60 → flexible review if the submission is reasonable
 
-**Other Notes for Grader**: `[Any special circumstances or notes]`
+**Our short reasoning**
+- Strengths: [what clearly works well]
+- Improvements: [what we’d polish next]
+- Why this grade: [one small paragraph]
+
+---
+
+## 12) Special notes (optional)
+
+Late submission: ☐ Yes ☐ No  
+If late, why: `[Your reason]`  
+Other notes for the grader: `[Anything they should know]`
 
 ---
 
 ## Conclusion
 
-This project demonstrates understanding of:
-- ✅ Connecting to Ollama API (localhost:11434)
-- ✅ Sending messages and receiving responses
-- ✅ Building a functional GUI interface
-- ✅ Managing conversation state
-- ✅ Error handling and user experience
-- ✅ Using UV for package management (as recommended by lecturer)
+We delivered a working local chatbot with a clean UI and clear docs.  
+We can connect to Ollama, keep conversation history, and handle errors.  
+We documented our real prompts and our process, as requested.
 
-**Note**: As per course requirements, accuracy of chatbot answers is not evaluated. The focus is on demonstrating technical ability to integrate with Ollama API and build a working interface.
+Important: Accuracy of model answers is not graded; using the tools correctly is.
 
 ---
 
-## Submission Information
+## Submission details
 
 **Team Code**: `[YourTeamCode]`  
-**Team Members**: [Member A Name] & [Member B Name]  
+**Team Members**: `[Member A] & [Member B]`  
 **Date Submitted**: November 4, 2025  
-**Course**: LLMs and Multi-Agent Orchestration  
+**Course**: LLMs and Multi‑Agent Orchestration  
 **Institution**: Reichman University
 
 ---
 
-**Each team member must submit this document separately to Moodle**
+**Each team member submits this document separately to Moodle.**
 
 ---
 
-## [Empty Page for Grader Notes]
+## [Blank page for grader notes]
 
-*(When exporting to PDF, add blank pages here for grader feedback)*
+*(When exporting to PDF, leave an empty page here for feedback.)*
 
