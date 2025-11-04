@@ -2,9 +2,25 @@
 
 **Course**: LLMs and Multi-Agent Orchestration  
 **Institution**: Reichman University  
-**Student**: [Your Name Here]  
-**Partner**: [Partner Name Here]  
-**Date**: November 4, 2025
+**Submission Deadline**: November 13, 2025
+
+---
+
+## Team Information
+
+**Team Code Name**: `[YourUniqueCode]` *(e.g., FouadTeam2025, no spaces)*
+
+**Team Member A**:
+- ID: `[ID Number]`
+- Name: `[Your Full Name]` *(optional)*
+
+**Team Member B**:
+- ID: `[ID Number]`
+- Name: `[Partner Full Name]` *(optional)*
+
+**GitHub Repository**: `[https://github.com/username/repo]` ✅ PUBLIC
+
+**Date Submitted**: November 4, 2025
 
 ---
 
@@ -451,6 +467,53 @@ all_messages = st.session_state.messages
 
 ---
 
+## 11. Self-Assessment and Grade Recommendation
+
+### Our Recommended Grade: `[60-100]`
+
+**Important Note from Lecturer**:
+- **Grade 100**: Very strict checking - grader will look for every small detail
+- **Grade 60**: Flexible, supportive checking if submission is reasonable
+
+### Our Self-Assessment:
+
+We recommend a grade of **[XX]** for the following reasons:
+
+**Strengths**:
+- [List what you did well]
+- [Example: Successfully connected to Ollama API]
+- [Example: Complete documentation with real prompts]
+- [Example: Working GUI with all required features]
+
+**Areas for Improvement**:
+- [Be honest about what could be better]
+- [Example: UI could be more polished]
+- [Example: Error handling could be more robust]
+
+**Why This Grade**:
+```
+[Explain your reasoning]
+
+Example:
+We believe we deserve [XX] because we met all technical requirements 
+(Ollama connection, GUI, documentation, prompts). The application works 
+reliably and we documented our actual development process with real 
+prompts and problems we faced. Some areas like UI design could be more 
+polished, but the core functionality is solid.
+```
+
+---
+
+## 12. Special Notes
+
+**Late Submission**: ☐ Yes ☐ No
+
+**Reason (if late)**: `[Your reason here]`
+
+**Other Notes for Grader**: `[Any special circumstances or notes]`
+
+---
+
 ## Conclusion
 
 This project demonstrates understanding of:
@@ -459,13 +522,27 @@ This project demonstrates understanding of:
 - ✅ Building a functional GUI interface
 - ✅ Managing conversation state
 - ✅ Error handling and user experience
+- ✅ Using UV for package management (as recommended by lecturer)
 
 **Note**: As per course requirements, accuracy of chatbot answers is not evaluated. The focus is on demonstrating technical ability to integrate with Ollama API and build a working interface.
 
 ---
 
-**Submitted by**: [Your Name]  
-**Date**: November 4, 2025  
+## Submission Information
+
+**Team Code**: `[YourTeamCode]`  
+**Team Members**: [Member A Name] & [Member B Name]  
+**Date Submitted**: November 4, 2025  
 **Course**: LLMs and Multi-Agent Orchestration  
-**Reichman University**
+**Institution**: Reichman University
+
+---
+
+**Each team member must submit this document separately to Moodle**
+
+---
+
+## [Empty Page for Grader Notes]
+
+*(When exporting to PDF, add blank pages here for grader feedback)*
 
